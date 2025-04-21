@@ -26,6 +26,7 @@ decade_ratios = df.groupby('decade', as_index=False)['usa_born_winner'].mean()
 max_decade_usa = decade_ratios.loc[decade_ratios['usa_born_winner'].idxmax(), 'decade']
 print(max_decade_usa)
 
+#visualizing the code
 sns.relplot(
     data=decade_ratios,
     x='decade',
@@ -54,6 +55,8 @@ female_max = female_ratios.loc[female_ratios['female_winner'].idxmax()]
 
 #creating dictionary for easy reference
 max_female_dict = {female_max['decade']: female_max['category']}
+print(max_female_dict)
+print(female_max)
 
 plot = sns.relplot(
     data = female_ratios,
@@ -91,10 +94,13 @@ female_winners = df[df['female_winner']== True]
 #find the row where the year is minimum among female winners
 first_female = female_winners[female_winners['year']==female_winners['year'].min()]
 
-# Display the year and category of the first female Nobel Prize winner
+# Display the name, year and category of the first female Nobel Prize winner
+first_female_name = first_female['full_name']
 first_female_year = first_female['year'].values[0]
 first_female_category = first_female['category'].values[0]
-
+print(first_female_year)
+print(first_female_category)
+print(first_female_name)
 
 #Determine repeat winners
 # Count how many times each full name appears in the dataset
@@ -108,3 +114,13 @@ repeats = repeat_winners.index.tolist()
 
 # Output the result
 print(repeats)
+
+
+
+#RESULT SUMMARY
+#Most awarded gender: Male
+#Country with highest number of Awards: USA
+#Decade that USA got more awards: 2000
+#Decade with highest number of Female laureates: 2020
+#First female Nobel laureate: Marie Curie
+#Nobel laureates with more than 2 prizes: 'Comité international de la Croix Rouge (International Committee of the Red Cross)', 'Frederick Sanger', 'Marie Curie, née Sklodowska', 'Office of the United Nations High Commissioner for Refugees (UNHCR)', 'John Bardeen', 'Linus Carl Pauling'
